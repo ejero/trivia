@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,useEffect, useState } from 'react';
 import { Question } from './components';
 
 const category = '';
@@ -6,8 +6,26 @@ const TRIVIA_API = `https://opentdb.com/api.php?amount=1&category=${category}&di
 
 class App extends Component {
 
+  constructor(){
+    super();
+    this.state = {question: null}
 
+  }
+
+
+  fetchQuestion() {
+    fetch(TRIVIA_API)
+    .then((res)=> res.json())
+    .then((data) => this.setState({question: data.results[0]}))
+
+  }
+
+  componentDidMount() {
+    this.fetchQuestion();
+  }
+  
   render() {
+    console.log(TRIVIA_API)
     return (
       <div className='container l:w-50 p-5'>
         <h1 className='display-1'>Trivia</h1>
