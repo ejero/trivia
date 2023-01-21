@@ -36,6 +36,7 @@ class App extends Component {
         <hr />
         <div>
           {/* Render question here */}
+          {this.state.question && <Question question={this.state.question} />}
         </div>
       </div>
     );
